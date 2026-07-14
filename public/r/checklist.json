@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checklist",
+  "title": "Checklist",
+  "description": "O item de checklist. A caixa marcada e lima com o check em sobre-lima. O dado entra por prop.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@sweeet-lime/tokens"
+  ],
+  "files": [
+    {
+      "path": "components/checklist.tsx",
+      "content": "\"use client\";\n\nimport { Check } from \"lucide-react\";\n\n/* O item entra por prop, sempre. Quem carrega o dado (banco, arquivo, estado\n   local) e o consumidor: o componente so sabe do texto e do estado feito. */\nexport type ChecklistItem = {\n  item: string;\n  feito: boolean;\n};\n\nexport function ItemCheck({\n  item,\n  onToggle,\n}: {\n  item: ChecklistItem;\n  onToggle: () => void;\n}) {\n  return (\n    <button\n      type=\"button\"\n      onClick={onToggle}\n      className=\"border-risco flex w-full items-start gap-[11px] border-b py-[9px] text-left text-ui leading-normal last:border-b-0\"\n    >\n      {/* a lima e preenchimento, nunca texto: o check em cima dela e sobre-lima */}\n      <span\n        className={`mt-px flex h-[19px] w-[19px] flex-none items-center justify-center rounded-md border-[1.5px] transition-colors ${\n          item.feito\n            ? \"border-lima bg-lima text-sobre-lima\"\n            : \"border-risco\"\n        }`}\n      >\n        {item.feito ? (\n          <Check className=\"size-[13px]\" strokeWidth={2.5} />\n        ) : null}\n      </span>\n      <span\n        className={`[text-wrap:pretty] ${\n          item.feito ? \"text-tinta-fraca line-through\" : \"\"\n        }`}\n      >\n        {item.item}\n      </span>\n    </button>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

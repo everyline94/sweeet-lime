@@ -1,0 +1,355 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "sweeet-lime",
+  "homepage": "https://sweeet-lime.vercel.app",
+  "items": [
+    {
+      "name": "manrope",
+      "type": "registry:font",
+      "title": "Manrope",
+      "description": "A fonte de texto do sistema. Serve --font-manrope, que o token --font-sans consome.",
+      "font": {
+        "family": "Manrope",
+        "provider": "google",
+        "import": "Manrope",
+        "variable": "--font-manrope",
+        "subsets": [
+          "latin"
+        ]
+      }
+    },
+    {
+      "name": "jetbrains-mono",
+      "type": "registry:font",
+      "title": "JetBrains Mono",
+      "description": "A mono do sistema: numero, chip e assinatura de rodape. Serve --font-jetbrains.",
+      "font": {
+        "family": "JetBrains Mono",
+        "provider": "google",
+        "import": "JetBrains_Mono",
+        "variable": "--font-jetbrains",
+        "subsets": [
+          "latin"
+        ]
+      }
+    },
+    {
+      "name": "tokens",
+      "type": "registry:theme",
+      "title": "Tokens sweeet-lime",
+      "description": "A fonte de verdade: canvas, folha, trilho, tinta, risco, lima. Instale isto antes de qualquer componente.",
+      "dependencies": [
+        "shadcn",
+        "tw-animate-css"
+      ],
+      "registryDependencies": [
+        "@sweeet-lime/manrope",
+        "@sweeet-lime/jetbrains-mono"
+      ],
+      "files": [
+        {
+          "path": "styles/tokens.css",
+          "type": "registry:file",
+          "target": "styles/tokens.css"
+        }
+      ],
+      "docs": "Importe os tokens no CSS da aplicacao, na primeira linha: @import \"../styles/tokens.css\";"
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "cn",
+      "description": "O juntador de classes: clsx mais tailwind-merge.",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "lib/utils.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "O selo. Variantes lima, ok, atencao e alerta, que nao existem no shadcn. O default e neutro.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@sweeet-lime/tokens"
+      ],
+      "files": [
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "O Button do registry no estilo base-nova, vestido pelos tokens do sistema.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@sweeet-lime/tokens"
+      ],
+      "files": [
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "A folha: a superficie onde o conteudo mora, com o rodape em mono.",
+      "registryDependencies": [
+        "@sweeet-lime/tokens"
+      ],
+      "files": [
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "O modal, sobre Base UI.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@sweeet-lime/tokens",
+        "@sweeet-lime/button"
+      ],
+      "files": [
+        {
+          "path": "components/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "O campo. A borda usa risco-forte, que passa 3:1 (WCAG 1.4.11).",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@sweeet-lime/tokens"
+      ],
+      "files": [
+        {
+          "path": "components/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "O drawer lateral, sempre controlado por open e onOpenChange.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@sweeet-lime/tokens",
+        "@sweeet-lime/button"
+      ],
+      "files": [
+        {
+          "path": "components/ui/sheet.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "O campo de varias linhas, na mesma borda de controle do input.",
+      "registryDependencies": [
+        "@sweeet-lime/tokens"
+      ],
+      "files": [
+        {
+          "path": "components/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "A dica, sobre Base UI.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@sweeet-lime/tokens"
+      ],
+      "files": [
+        {
+          "path": "components/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "botao",
+      "type": "registry:component",
+      "title": "BotaoLima",
+      "description": "A acao primaria: o Button vestindo a pill lima, altura unica. A lima e preenchimento, nunca texto.",
+      "registryDependencies": [
+        "@sweeet-lime/tokens",
+        "@sweeet-lime/button"
+      ],
+      "files": [
+        {
+          "path": "components/botao.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "blocos",
+      "type": "registry:component",
+      "title": "Blocos",
+      "description": "O esqueleto de tela: Pagina, Cabecalho, Sec, Card, ChipMono, Tile, KV, Vazio e BotaoLeve.",
+      "registryDependencies": [
+        "@sweeet-lime/tokens",
+        "@sweeet-lime/card"
+      ],
+      "files": [
+        {
+          "path": "components/blocos.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "marca",
+      "type": "registry:component",
+      "title": "Marca",
+      "description": "O selo em quadrado lima com a sigla, mais o nome e o subtitulo. Tudo por prop.",
+      "registryDependencies": [
+        "@sweeet-lime/tokens"
+      ],
+      "files": [
+        {
+          "path": "components/marca.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "checklist",
+      "type": "registry:component",
+      "title": "Checklist",
+      "description": "O item de checklist. A caixa marcada e lima com o check em sobre-lima. O dado entra por prop.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@sweeet-lime/tokens"
+      ],
+      "files": [
+        {
+          "path": "components/checklist.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:component",
+      "title": "Spinner",
+      "description": "O giro padrao das telas de espera.",
+      "registryDependencies": [
+        "@sweeet-lime/tokens"
+      ],
+      "files": [
+        {
+          "path": "components/spinner.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:component",
+      "title": "Toast",
+      "description": "Emissor minusculo, sem contexto e sem biblioteca. Toaster no layout, toast() de qualquer lugar.",
+      "registryDependencies": [
+        "@sweeet-lime/tokens"
+      ],
+      "files": [
+        {
+          "path": "components/toast.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "moldura",
+      "type": "registry:component",
+      "title": "Moldura",
+      "description": "Iframe com estado de carregando e fallback de nova aba sempre visivel.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@sweeet-lime/tokens",
+        "@sweeet-lime/spinner"
+      ],
+      "files": [
+        {
+          "path": "components/moldura.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "tema",
+      "type": "registry:component",
+      "title": "Tema",
+      "description": "O provider de tema e o botao de trocar claro/escuro, por next-themes.",
+      "dependencies": [
+        "next-themes",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@sweeet-lime/tokens"
+      ],
+      "files": [
+        {
+          "path": "components/tema.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/theme-provider.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}

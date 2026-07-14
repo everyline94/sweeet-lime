@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "marca",
+  "title": "Marca",
+  "description": "O selo em quadrado lima com a sigla, mais o nome e o subtitulo. Tudo por prop.",
+  "registryDependencies": [
+    "@sweeet-lime/tokens"
+  ],
+  "files": [
+    {
+      "path": "components/marca.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\n/* O selo: a sigla dentro do quadrado lima. O texto sobre lima e sempre\n   sobre-lima, que nao muda de tema; e essa a regra dura do DS. A sigla entra\n   por prop porque a marca e de quem consome, nao do sistema. */\nexport function Selo({\n  sigla = \"S\",\n  tamanho = \"size-9\",\n  className,\n}: {\n  sigla?: string;\n  tamanho?: string;\n  className?: string;\n}) {\n  return (\n    <span\n      className={cn(\n        \"bg-lima text-sobre-lima grid shrink-0 place-items-center rounded-xl text-base font-extrabold\",\n        tamanho,\n        className,\n      )}\n      aria-hidden\n    >\n      {sigla}\n    </span>\n  );\n}\n\nexport function Marca({\n  nome = \"sweeet-lime\",\n  sub = \"o design system\",\n  sigla,\n  clara = false,\n}: {\n  nome?: string;\n  sub?: string;\n  sigla?: string;\n  clara?: boolean;\n}) {\n  return (\n    <div className=\"flex items-center gap-2.5\">\n      <Selo sigla={sigla ?? nome.charAt(0).toUpperCase()} />\n      <div className=\"min-w-0\">\n        <div\n          className={cn(\n            \"text-[15px] font-bold leading-tight\",\n            clara ? \"text-white\" : \"text-tinta\",\n          )}\n        >\n          {nome}\n        </div>\n        <div\n          className={cn(\n            \"text-[11px]\",\n            clara ? \"text-white/45\" : \"text-tinta-fraca\",\n          )}\n        >\n          {sub}\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

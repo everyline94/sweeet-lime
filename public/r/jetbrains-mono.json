@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "jetbrains-mono",
+  "title": "JetBrains Mono",
+  "description": "A mono do sistema: numero, chip e assinatura de rodape. Serve --font-jetbrains.",
+  "type": "registry:font",
+  "font": {
+    "family": "JetBrains Mono",
+    "provider": "google",
+    "import": "JetBrains_Mono",
+    "variable": "--font-jetbrains",
+    "subsets": [
+      "latin"
+    ]
+  }
+}

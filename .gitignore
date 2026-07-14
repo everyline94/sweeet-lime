@@ -1,0 +1,7 @@
+node_modules/
+storybook-static/
+*.tsbuildinfo
+.DS_Store
+
+# o brief original fica local: tem caminho da minha maquina e contexto do app de origem
+BRIEF.md

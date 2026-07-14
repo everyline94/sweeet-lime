@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>sweeet-lime</title>
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* os mesmos tokens do sistema, na mao, porque esta pagina nao tem build */
+      :root {
+        --canvas: #e9ece8;
+        --folha: #ffffff;
+        --tinta: #16181a;
+        --tinta-fraca: #616863;
+        --risco: #dce0da;
+        --lima: #e6f87f;
+        --sobre-lima: #16181a;
+        color-scheme: light;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --canvas: #131614;
+          --folha: #1b1f1c;
+          --tinta: #e8ebe6;
+          --tinta-fraca: #9aa39a;
+          --risco: #2a2f2b;
+          color-scheme: dark;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 48px 20px 80px;
+        background: var(--canvas);
+        color: var(--tinta);
+        font-family: Manrope, system-ui, sans-serif;
+        font-size: 17px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+      }
+      main {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+      .selo {
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        background: var(--lima);
+        color: var(--sobre-lima);
+        font-weight: 800;
+        font-size: 19px;
+      }
+      h1 {
+        margin: 20px 0 6px;
+        font-size: 44px;
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        font-weight: 800;
+        text-wrap: balance;
+      }
+      .lede {
+        margin: 0 0 30px;
+        max-width: 52ch;
+        color: var(--tinta-fraca);
+        font-size: 19px;
+        text-wrap: balance;
+      }
+      p {
+        text-wrap: pretty;
+      }
+      .folha {
+        background: var(--folha);
+        border: 1px solid var(--risco);
+        border-radius: 20px;
+        padding: 22px 24px;
+        margin-bottom: 16px;
+      }
+      h2 {
+        margin: 0 0 10px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--tinta-fraca);
+      }
+      pre {
+        margin: 0;
+        overflow-x: auto;
+        background: var(--canvas);
+        border: 1px solid var(--risco);
+        border-radius: 12px;
+        padding: 12px 14px;
+      }
+      code {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+      }
+      .itens {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .itens a {
+        display: inline-block;
+        padding: 3px 10px;
+        border: 1px solid var(--risco);
+        border-radius: 999px;
+        color: var(--tinta);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        text-decoration: none;
+      }
+      .itens a:hover {
+        background: var(--lima);
+        color: var(--sobre-lima);
+        border-color: var(--lima);
+      }
+      footer {
+        margin-top: 30px;
+        color: var(--tinta-fraca);
+        font-size: 14px;
+      }
+      footer a {
+        color: var(--tinta);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="selo">S</div>
+      <h1>sweeet-lime</h1>
+      <p class="lede">
+        O design system da lima. Um registry do shadcn: o consumidor recebe o
+        código, não um binário.
+      </p>
+
+      <div class="folha">
+        <h2>Instalar</h2>
+        <pre><code>npx shadcn@latest add https://sweeet-lime.vercel.app/r/botao.json</code></pre>
+        <p style="margin: 14px 0 0; font-size: 15px; color: var(--tinta-fraca)">
+          Os tokens, o Button e as duas fontes (Manrope e JetBrains Mono) chegam
+          junto. Depois é só importar o <code>tokens.css</code> na primeira linha
+          do CSS da aplicação.
+        </p>
+      </div>
+
+      <div class="folha">
+        <h2>Registry por namespace</h2>
+        <pre><code>// components.json do projeto que consome
+"registries": {
+  "@sweeet-lime": "https://sweeet-lime.vercel.app/r/{name}.json"
+}
+
+npx shadcn@latest add @sweeet-lime/blocos</code></pre>
+      </div>
+
+      <div class="folha">
+        <h2>Os 21 itens</h2>
+        <ul class="itens">
+          <li><a href="/r/tokens.json">tokens</a></li>
+          <li><a href="/r/manrope.json">manrope</a></li>
+          <li><a href="/r/jetbrains-mono.json">jetbrains-mono</a></li>
+          <li><a href="/r/utils.json">utils</a></li>
+          <li><a href="/r/badge.json">badge</a></li>
+          <li><a href="/r/button.json">button</a></li>
+          <li><a href="/r/card.json">card</a></li>
+          <li><a href="/r/dialog.json">dialog</a></li>
+          <li><a href="/r/input.json">input</a></li>
+          <li><a href="/r/sheet.json">sheet</a></li>
+          <li><a href="/r/textarea.json">textarea</a></li>
+          <li><a href="/r/tooltip.json">tooltip</a></li>
+          <li><a href="/r/botao.json">botao</a></li>
+          <li><a href="/r/blocos.json">blocos</a></li>
+          <li><a href="/r/marca.json">marca</a></li>
+          <li><a href="/r/checklist.json">checklist</a></li>
+          <li><a href="/r/spinner.json">spinner</a></li>
+          <li><a href="/r/toast.json">toast</a></li>
+          <li><a href="/r/moldura.json">moldura</a></li>
+          <li><a href="/r/tema.json">tema</a></li>
+          <li><a href="/r/registry.json">registry</a></li>
+        </ul>
+      </div>
+
+      <footer>
+        A lima é preenchimento, nunca texto. Código em
+        <a href="https://github.com/everyline94/sweeet-lime">github.com/everyline94/sweeet-lime</a>.
+      </footer>
+    </main>
+  </body>
+</html>

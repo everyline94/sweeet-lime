@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "moldura",
+  "title": "Moldura",
+  "description": "Iframe com estado de carregando e fallback de nova aba sempre visivel.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@sweeet-lime/tokens",
+    "@sweeet-lime/spinner"
+  ],
+  "files": [
+    {
+      "path": "components/moldura.tsx",
+      "content": "\"use client\";\n\nimport { ExternalLink } from \"lucide-react\";\nimport { useState } from \"react\";\n\nimport { Spinner } from \"./spinner\";\n\n// iframe com estado de carregando e fallback de nova aba sempre visivel.\n// Cada app embutido tem login proprio (mesma conta, sessao separada por\n// origem): loga uma vez dentro do iframe e a sessao fica.\nexport function Moldura({ titulo, url }: { titulo: string; url: string }) {\n  const [carregou, setCarregou] = useState(false);\n\n  return (\n    <div className=\"flex h-full flex-col\">\n      <div className=\"border-risco flex items-center justify-between gap-3 border-b px-4 py-2.5\">\n        <span className=\"text-tinta-fraca font-mono text-xs\">{titulo}</span>\n        <a\n          href={url}\n          target=\"_blank\"\n          rel=\"noopener\"\n          className=\"text-tinta-fraca hover:bg-tinta/5 hover:text-tinta inline-flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-[12.5px] font-medium transition-colors\"\n        >\n          <ExternalLink className=\"size-[13px]\" strokeWidth={1.75} /> Abrir em\n          nova aba\n        </a>\n      </div>\n      <div className=\"relative flex-1\">\n        {!carregou ? (\n          <div className=\"text-tinta-fraca absolute inset-0 flex items-center justify-center text-[13px]\">\n            <Spinner className=\"mr-2.5\" />\n            carregando {titulo.toLowerCase()}\n          </div>\n        ) : null}\n        <iframe\n          src={url}\n          title={titulo}\n          onLoad={() => setCarregou(true)}\n          className=\"absolute inset-0 h-full w-full border-0\"\n        />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

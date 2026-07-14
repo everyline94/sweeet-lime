@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge",
+  "title": "Badge",
+  "description": "O selo. Variantes lima, ok, atencao e alerta, que nao existem no shadcn. O default e neutro.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@sweeet-lime/tokens"
+  ],
+  "files": [
+    {
+      "path": "components/ui/badge.tsx",
+      "content": "import { cva, type VariantProps } from \"class-variance-authority\";\nimport * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nconst badgeVariants = cva(\n  \"inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-full border px-2 py-0.5 text-xs font-medium whitespace-nowrap [&>svg]:size-3 [&>svg]:pointer-events-none\",\n  {\n    variants: {\n      variant: {\n        default: \"border-transparent bg-primary text-primary-foreground\",\n        lima: \"border-transparent bg-lima text-sobre-lima\",\n        neutro: \"border-risco bg-canvas text-tinta-fraca\",\n        ok: \"border-transparent bg-ok/12 text-ok\",\n        atencao: \"border-transparent bg-atencao/12 text-atencao\",\n        alerta: \"border-transparent bg-alerta/12 text-alerta\",\n        contorno: \"border-risco text-tinta\",\n      },\n    },\n    defaultVariants: {\n      variant: \"neutro\",\n    },\n  },\n);\n\nfunction Badge({\n  className,\n  variant,\n  ...props\n}: React.ComponentProps<\"span\"> & VariantProps<typeof badgeVariants>) {\n  return (\n    <span\n      data-slot=\"badge\"\n      className={cn(badgeVariants({ variant }), className)}\n      {...props}\n    />\n  );\n}\n\nexport { Badge, badgeVariants };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

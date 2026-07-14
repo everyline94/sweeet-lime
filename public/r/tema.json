@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tema",
+  "title": "Tema",
+  "description": "O provider de tema e o botao de trocar claro/escuro, por next-themes.",
+  "dependencies": [
+    "next-themes",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@sweeet-lime/tokens"
+  ],
+  "files": [
+    {
+      "path": "components/tema.tsx",
+      "content": "\"use client\";\n\nimport { Moon, Sun } from \"lucide-react\";\nimport { useTheme } from \"next-themes\";\nimport { useSyncExternalStore } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nconst semAssinatura = () => () => {};\n\n/* toggle de tema por next-themes; so decide o icone depois de montar,\n   pra nao brigar com a hidratacao (snapshot do servidor e false) */\nexport function BotaoTema({ noTrilho = false }: { noTrilho?: boolean }) {\n  const { resolvedTheme, setTheme } = useTheme();\n  const montado = useSyncExternalStore(\n    semAssinatura,\n    () => true,\n    () => false,\n  );\n  const escuro = montado && resolvedTheme === \"dark\";\n\n  return (\n    <button\n      type=\"button\"\n      onClick={() => setTheme(escuro ? \"light\" : \"dark\")}\n      aria-label={escuro ? \"Usar tema claro\" : \"Usar tema escuro\"}\n      title=\"Tema\"\n      className={cn(\n        \"grid size-9 place-items-center rounded-xl transition-colors\",\n        noTrilho\n          ? \"text-white/45 hover:bg-white/8 hover:text-white/80\"\n          : \"text-tinta-fraca hover:bg-tinta/5 hover:text-tinta\",\n      )}\n    >\n      {escuro ? (\n        <Sun className=\"size-[17px]\" strokeWidth={1.75} />\n      ) : (\n        <Moon className=\"size-[17px]\" strokeWidth={1.75} />\n      )}\n    </button>\n  );\n}\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "components/theme-provider.tsx",
+      "content": "\"use client\";\n\nimport { ThemeProvider as NextThemesProvider } from \"next-themes\";\nimport type { ComponentProps } from \"react\";\n\nexport function ThemeProvider({\n  children,\n  ...props\n}: ComponentProps<typeof NextThemesProvider>) {\n  return <NextThemesProvider {...props}>{children}</NextThemesProvider>;\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

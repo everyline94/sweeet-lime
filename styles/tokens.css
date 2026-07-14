@@ -1,0 +1,374 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ---------------------------------------------------------------
+   sweeet-lime: a fonte de verdade do design system.
+   Um punhado de nomes proprios: canvas, folha, trilho, tinta,
+   risco, lima. Trocar uma linha aqui muda todo consumidor.
+   --------------------------------------------------------------- */
+
+:root {
+  --canvas: #e9ece8; /* o fundo. cinza esverdeado, nunca branco */
+  --folha: #ffffff; /* onde o conteudo mora. o card, o documento */
+  --trilho: #16181a; /* a sidebar. escura nos dois temas */
+  --tinta: #16181a; /* todo texto */
+  --tinta-fraca: #616863; /* legenda, rotulo, secundario. 4.81:1 sobre o canvas */
+  --risco: #dce0da; /* toda borda */
+  --risco-forte: #7d857c; /* borda de CONTROLE (input, textarea, checkbox). 3.81:1 na folha, 3.19 no canvas */
+  --lima: #e6f87f; /* marcacao e preenchimento. NUNCA texto */
+  --alerta: #b3402b; /* perigo e aviso forte */
+
+  /* O texto quando o fundo e lima. NAO muda entre os temas: a lima
+     e a mesma nos dois, entao a tinta em cima dela tambem tem que ser. */
+  --sobre-lima: #16181a;
+
+  /* O texto quando o fundo e alerta. Este MUDA entre os temas: o alerta
+     claro e escuro de tinta, o escuro e claro de salmao. */
+  --sobre-alerta: #ffffff;
+
+  /* A cor do foco do teclado. Reatribuida por superficie no @layer base. */
+  --foco: #16181a;
+
+  /* tons semanticos do painel (placar, badges), harmonizados com o DS.
+     Escuros o bastante pra passarem 4.5:1 sobre canvas e dentro do
+     badge /12 sobre a folha. */
+  --ok: #2a7549;
+  --atencao: #856013;
+
+  --radius: 1rem;
+  color-scheme: light;
+}
+
+.dark {
+  --canvas: #131614;
+  --folha: #1b1f1c;
+  --trilho: #0b0d0c;
+  --tinta: #e8ebe6;
+  --tinta-fraca: #9aa39a;
+  --risco: #2a2f2b;
+  --risco-forte: #6a726c; /* 3.36:1 na folha escura, 3.68 no canvas */
+  --lima: #e6f87f; /* a mesma. no escuro ela grita, e e pra gritar */
+  --alerta: #e8836b;
+  --foco: #e8ebe6;
+  --ok: #6fbf92;
+  --atencao: #d9a441;
+  --sobre-alerta: #16181a;
+  color-scheme: dark;
+  /* --sobre-lima NAO se redeclara aqui. E esse o ponto. */
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-folha: var(--folha);
+  --color-trilho: var(--trilho);
+  --color-tinta: var(--tinta);
+  --color-tinta-fraca: var(--tinta-fraca);
+  --color-risco: var(--risco);
+  --color-risco-forte: var(--risco-forte);
+  --color-lima: var(--lima);
+  --color-sobre-lima: var(--sobre-lima);
+  --color-alerta: var(--alerta);
+  --color-sobre-alerta: var(--sobre-alerta);
+  --color-ok: var(--ok);
+  --color-atencao: var(--atencao);
+
+  --font-sans: var(--font-manrope);
+  --font-mono: var(--font-jetbrains);
+
+  --text-rotulo: 0.75rem;
+  --text-rotulo--line-height: 1.333;
+  --text-rotulo--letter-spacing: 0.08em;
+  --text-rotulo--font-weight: 600;
+
+  --text-ui: 0.875rem;
+  --text-ui--line-height: 1.429;
+
+  --text-mono: 0.875rem;
+  --text-mono--line-height: 1.714;
+
+  --text-corpo: 1.0625rem;
+  --text-corpo--line-height: 1.706;
+
+  --text-lede: 1.25rem;
+  --text-lede--line-height: 1.6;
+
+  --text-h3: 1.25rem;
+  --text-h3--line-height: 1.4;
+
+  --text-h2: 1.75rem;
+  --text-h2--line-height: 1.286;
+
+  --text-display: 3rem;
+  --text-display--line-height: 1.083;
+  --text-display--letter-spacing: -0.02em;
+  --text-display--font-weight: 800;
+}
+
+/* ---------------------------------------------------------------
+   Ponte para o shadcn. Os componentes de components/ui/ falam em
+   background, foreground, primary, border. Aqui a gente diz o que
+   cada uma dessas palavras significa NA NOSSA marca.
+   --------------------------------------------------------------- */
+
+@theme inline {
+  --color-background: var(--canvas);
+  --color-foreground: var(--tinta);
+  --color-card: var(--folha);
+  --color-card-foreground: var(--tinta);
+  --color-popover: var(--folha);
+  --color-popover-foreground: var(--tinta);
+  --color-primary: var(--tinta);
+  --color-primary-foreground: var(--folha);
+  /* secondary/muted NUNCA apontam pro canvas: botao secundario sobre o
+     fundo sumia (1.0:1). Tom proprio, um degrau de tinta sobre o canvas,
+     visivel sobre canvas e folha nos dois temas. */
+  --color-secondary: color-mix(in srgb, var(--canvas), var(--tinta) 12%);
+  --color-secondary-foreground: var(--tinta);
+  --color-muted: color-mix(in srgb, var(--canvas), var(--tinta) 12%);
+  --color-muted-foreground: var(--tinta-fraca);
+  --color-accent: var(--lima);
+  --color-accent-foreground: var(--sobre-lima);
+  --color-destructive: var(--alerta);
+  --color-border: var(--risco);
+  /* borda de controle: o risco comum e 1.34:1 e some no limite do campo.
+     Input/textarea/checkbox usam o degrau forte, que passa 3:1 (WCAG 1.4.11). */
+  --color-input: var(--risco-forte);
+  --color-ring: var(--tinta);
+
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+  --radius-2xl: calc(var(--radius) * 2);
+}
+
+@layer base {
+  * {
+    @apply border-risco;
+  }
+
+  html {
+    @apply font-sans;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    @apply bg-canvas text-tinta;
+  }
+
+  /* sem viuvas nem orfas. regra dura. */
+  h1,
+  h2,
+  h3,
+  .lede {
+    text-wrap: balance;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  /* O foco tem que ser visivel na superficie em que ele cai. */
+  :focus-visible {
+    outline: 2px solid var(--foco);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* superficies escuras nos dois temas: o foco vira lima. */
+  .bg-trilho,
+  .superficie-escura {
+    --foco: var(--lima);
+  }
+
+  ::selection {
+    background: var(--lima);
+    color: var(--sobre-lima);
+  }
+}
+
+@layer components {
+  /* a folha. o card flutuando no canvas. */
+  .folha {
+    @apply bg-folha rounded-3xl;
+    box-shadow:
+      0 1px 2px rgb(0 0 0 / 0.04),
+      0 8px 24px -12px rgb(0 0 0 / 0.08);
+  }
+
+  /* No escuro a folha contra o canvas da 1.09:1: ela some.
+     Sem isto o cartao nao flutua no escuro. */
+  .dark .folha {
+    box-shadow:
+      0 0 0 1px var(--risco),
+      0 24px 48px -24px rgb(0 0 0 / 0.55);
+  }
+}
+
+/* Prosa de documento em markdown renderizada nos tokens do DS:
+   hierarquia leve, sem borda pesada. */
+.doc-md {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--tinta);
+}
+.doc-md > :first-child {
+  margin-top: 0;
+}
+.doc-md h2 {
+  margin: 28px 0 8px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.doc-md h3 {
+  margin: 20px 0 6px;
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+.doc-md p {
+  margin: 0 0 10px;
+}
+.doc-md ul,
+.doc-md ol {
+  margin: 0 0 12px;
+  padding-left: 20px;
+  display: grid;
+  gap: 4px;
+}
+.doc-md ul {
+  list-style: disc;
+}
+.doc-md ol {
+  list-style: decimal;
+}
+.doc-md li::marker {
+  color: var(--tinta-fraca);
+}
+.doc-md strong {
+  font-weight: 700;
+}
+.doc-md a {
+  color: var(--tinta);
+  text-decoration: underline;
+  text-decoration-color: var(--risco);
+  text-underline-offset: 2px;
+}
+.doc-md a:hover {
+  text-decoration-color: var(--tinta-fraca);
+}
+.doc-md code {
+  border: 1px solid var(--risco);
+  background: var(--canvas);
+  border-radius: 6px;
+  padding: 1px 5px;
+  font-size: 0.8125rem;
+  font-family: var(--font-jetbrains), monospace;
+}
+.doc-md blockquote {
+  margin: 0 0 12px;
+  padding: 2px 0 2px 14px;
+  border-left: 2px solid var(--risco);
+  color: var(--tinta-fraca);
+}
+.doc-md blockquote p:last-child {
+  margin-bottom: 0;
+}
+.doc-md hr {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid var(--risco);
+}
+.doc-md table {
+  display: block;
+  overflow-x: auto;
+  margin: 0 0 12px;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+.doc-md th,
+.doc-md td {
+  padding: 6px 12px 6px 0;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--risco);
+}
+.doc-md th {
+  font-weight: 600;
+  color: var(--tinta-fraca);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+/* ===== RECEITA LOGIN FOLHA v1 (fonte: styles/tokens.css) =====
+   O login publico no design system: card folha centrado no canvas, hairlines
+   de risco, acento lima (aba ativa, foco, detalhe) que nunca vira texto.
+   So tokens, nenhum seletor de tema: quem tematiza por .dark e quem tematiza
+   por [data-theme="dark"] recebem os dois o mesmo bloco, sem tocar nele. */
+.lc-raiz{position:relative; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:28px 20px; background:var(--canvas); color:var(--tinta);
+  font-family:var(--font-manrope, var(--font-sans, Manrope)), Manrope, system-ui, -apple-system, sans-serif;
+  font-size:14px; line-height:1.5;}
+.lc-fundo{display:none;}
+.lc-card{position:relative; z-index:2; width:100%; max-width:440px; border-radius:calc(var(--radius, 1rem) * 1.5);
+  padding:34px 34px 30px; background:var(--folha);
+  box-shadow:0 0 0 1px var(--risco), 0 1px 2px rgba(0,0,0,.04), 0 8px 24px -12px rgba(0,0,0,.12);}
+@media (max-width:520px){.lc-card{padding:26px 22px 24px;}}
+.lc-marca{display:flex; align-items:center; gap:11px; margin-bottom:24px;}
+.lc-marca .lc-quadrado{width:34px; height:34px; border-radius:10px; background:var(--lima); color:var(--sobre-lima);
+  display:flex; align-items:center; justify-content:center; font-weight:700; font-size:16px;}
+.lc-marca .lc-nome{font-size:15px; font-weight:700; text-wrap:balance;}
+.lc-marca .lc-nome small{display:block; font-size:11.5px; font-weight:500; color:var(--tinta-fraca); margin-top:1px;}
+.lc-abas{display:flex; gap:22px; margin-bottom:8px; border-bottom:1px solid var(--risco);}
+.lc-aba{position:relative; background:none; border:0; padding:2px 2px 11px; font:inherit; font-size:15px; font-weight:700;
+  color:var(--tinta); cursor:default;}
+.lc-aba::after{content:""; position:absolute; left:0; right:0; bottom:-1px; height:3px; border-radius:2px; background:var(--lima);}
+.lc-aba.inativa{color:var(--tinta-fraca); font-weight:500; cursor:pointer;}
+.lc-aba.inativa::after{display:none;}
+.lc-aba.inativa:hover{color:var(--tinta);}
+.lc-sub{font-size:13.5px; line-height:1.55; color:var(--tinta-fraca); text-wrap:pretty; margin:14px 0 22px;}
+.lc-nota{font-size:12.5px; line-height:1.55; color:var(--tinta-fraca); background:var(--canvas);
+  border:1px solid var(--risco); border-radius:12px; padding:10px 13px; margin:0 0 16px; text-wrap:pretty;}
+.lc-campo{margin-bottom:14px;}
+.lc-campo label{display:block; font-size:12.5px; font-weight:600; color:var(--tinta-fraca); margin-bottom:7px;}
+.lc-caixa{position:relative;}
+.lc-input{width:100%; height:46px; border-radius:12px; border:1px solid var(--risco-forte); background:var(--folha);
+  padding:0 14px; font:inherit; font-size:14.5px; color:var(--tinta); box-sizing:border-box;
+  transition:border-color .15s, box-shadow .15s;}
+.lc-caixa.com-olho .lc-input{padding-right:48px;}
+.lc-input::placeholder{color:var(--tinta-fraca);}
+.lc-input:hover{border-color:var(--tinta);}
+.lc-input:focus{outline:none; border-color:var(--tinta); box-shadow:0 0 0 3px color-mix(in srgb, var(--lima) 55%, transparent);}
+.lc-olho{position:absolute; right:6px; top:50%; transform:translateY(-50%); width:36px; height:36px;
+  display:flex; align-items:center; justify-content:center; background:none; border:0; border-radius:9px;
+  color:var(--tinta-fraca); cursor:pointer; transition:color .15s;}
+.lc-olho:hover{color:var(--tinta);}
+.lc-entrar{width:100%; height:48px; margin-top:8px; border:0; border-radius:999px; background:var(--lima);
+  color:var(--sobre-lima); font:inherit; font-size:15px; font-weight:700; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; gap:10px; transition:background .15s;}
+.lc-entrar:hover{background:color-mix(in srgb, var(--lima) 85%, var(--folha));}
+.lc-entrar:disabled{opacity:.65; pointer-events:none;}
+.lc-giro{width:16px; height:16px; border-radius:50%; border:2px solid color-mix(in srgb, var(--sobre-lima) 30%, transparent);
+  border-top-color:var(--sobre-lima); animation:lc-giro .7s linear infinite;}
+@keyframes lc-giro{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){.lc-giro{animation-duration:1.6s;}}
+.lc-erro{margin:12px 0 0; font-size:13px; font-weight:600; color:var(--alerta); text-align:center; text-wrap:balance;}
+.lc-div{display:flex; align-items:center; gap:12px; margin:22px 0 14px; color:var(--tinta-fraca); font-size:12px;}
+.lc-div::before,.lc-div::after{content:""; flex:1; height:1px; background:var(--risco);}
+.lc-social{display:flex; gap:10px;}
+.lc-pilula{flex:1; height:44px; border-radius:999px; border:1px solid var(--risco-forte); background:var(--folha);
+  color:var(--tinta); font:inherit; font-size:13.5px; font-weight:600; display:flex; align-items:center;
+  justify-content:center; gap:9px; cursor:pointer; transition:background .15s, border-color .15s;}
+.lc-pilula:hover{background:color-mix(in srgb, var(--folha), var(--tinta) 5%); border-color:var(--tinta);}
+.lc-links{display:flex; justify-content:center; margin-top:16px;}
+.lc-link{background:none; border:0; padding:4px; font:inherit; font-size:12.5px; color:var(--tinta-fraca); cursor:pointer;
+  text-decoration:underline; text-decoration-color:var(--risco); text-underline-offset:2px;}
+.lc-link:hover{color:var(--tinta); text-decoration-color:var(--tinta-fraca);}
+.lc-pe{position:relative; z-index:2; margin-top:22px; font-size:12px; line-height:1.7; color:var(--tinta-fraca);
+  text-align:center; max-width:56ch; text-wrap:balance;}
+/* ===== FIM RECEITA LOGIN FOLHA v1 ===== */

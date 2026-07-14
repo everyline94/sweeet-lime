@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "title": "Spinner",
+  "description": "O giro padrao das telas de espera.",
+  "registryDependencies": [
+    "@sweeet-lime/tokens"
+  ],
+  "files": [
+    {
+      "path": "components/spinner.tsx",
+      "content": "import { cn } from \"@/lib/utils\";\n\n/* o giro padrao de carregamento das telas de espera (auth, views, moldura) */\nexport function Spinner({ className }: { className?: string }) {\n  return (\n    <span\n      aria-hidden\n      className={cn(\n        \"border-risco border-t-tinta inline-block h-[18px] w-[18px] animate-spin rounded-full border-2\",\n        className,\n      )}\n    />\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

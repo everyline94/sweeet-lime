@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "manrope",
+  "title": "Manrope",
+  "description": "A fonte de texto do sistema. Serve --font-manrope, que o token --font-sans consome.",
+  "type": "registry:font",
+  "font": {
+    "family": "Manrope",
+    "provider": "google",
+    "import": "Manrope",
+    "variable": "--font-manrope",
+    "subsets": [
+      "latin"
+    ]
+  }
+}

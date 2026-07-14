@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toast",
+  "title": "Toast",
+  "description": "Emissor minusculo, sem contexto e sem biblioteca. Toaster no layout, toast() de qualquer lugar.",
+  "registryDependencies": [
+    "@sweeet-lime/tokens"
+  ],
+  "files": [
+    {
+      "path": "components/toast.tsx",
+      "content": "\"use client\";\n\nimport { useEffect, useState } from \"react\";\n\n// emissor minusculo de toast, sem contexto nem biblioteca\nlet ouvinte: ((msg: string) => void) | null = null;\n\nexport function toast(msg: string) {\n  ouvinte?.(msg);\n}\n\nexport function Toaster() {\n  const [msg, setMsg] = useState<string | null>(null);\n\n  useEffect(() => {\n    let timer: ReturnType<typeof setTimeout>;\n    ouvinte = (m) => {\n      setMsg(m);\n      clearTimeout(timer);\n      timer = setTimeout(() => setMsg(null), 2600);\n    };\n    return () => {\n      ouvinte = null;\n      clearTimeout(timer);\n    };\n  }, []);\n\n  if (!msg) return null;\n  return (\n    <div className=\"folha border-risco text-tinta fixed bottom-5 left-1/2 z-50 -translate-x-1/2 rounded-2xl border px-4 py-[11px] text-[13px]\">\n      {msg}\n    </div>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

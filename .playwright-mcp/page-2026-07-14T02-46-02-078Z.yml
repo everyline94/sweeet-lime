@@ -1,0 +1,82 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - log
+    - log
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - banner "Storybook" [ref=e7]:
+        - heading "Storybook" [level=1] [ref=e8]
+        - img
+        - generic [ref=e12]:
+          - generic [ref=e14]:
+            - link "Skip to content" [ref=e15] [cursor=pointer]:
+              - /url: "#storybook-preview-wrapper"
+            - link "Storybook" [ref=e17] [cursor=pointer]:
+              - /url: ./
+              - img "Storybook" [ref=e18]
+            - switch "Settings" [ref=e23] [cursor=pointer]:
+              - img [ref=e24]
+          - generic [ref=e27]: Search for components
+          - search [ref=e28]:
+            - combobox "Search for components" [ref=e29]:
+              - generic:
+                - img
+              - searchbox "Search for components" [ref=e30]
+              - code:
+                - generic: ⌘
+                - text: K
+          - navigation "Stories" [ref=e32]:
+            - heading "Stories" [level=2] [ref=e33]
+      - separator "Sidebar resize handle" [ref=e53]
+    - generic [ref=e55]:
+      - region "Toolbar" [ref=e56]:
+        - heading "Toolbar" [level=2] [ref=e57]
+        - toolbar [ref=e58]:
+          - generic [ref=e59]:
+            - button "Reload story" [ref=e60] [cursor=pointer]:
+              - img [ref=e61]
+            - switch "Measure tool" [ref=e63] [cursor=pointer]:
+              - img [ref=e64]
+            - switch "Outline tool" [ref=e67] [cursor=pointer]:
+              - img [ref=e68]
+            - button "Viewport size" [ref=e70] [cursor=pointer]:
+              - img [ref=e71]
+            - button "Vision filter" [ref=e75] [cursor=pointer]:
+              - img [ref=e76]
+          - generic [ref=e80]:
+            - button "Open in isolation mode" [ref=e81] [cursor=pointer]:
+              - img [ref=e82]
+            - switch "Change zoom level" [ref=e87] [cursor=pointer]: 100%
+            - button "Enter full screen" [ref=e88] [cursor=pointer]:
+              - img [ref=e89]
+      - main "Main preview area" [ref=e91]:
+        - heading "Main preview area" [level=2] [ref=e92]
+        - generic [ref=e93]:
+          - progressbar "Content is loading..." [ref=e95]
+          - generic [ref=e96]:
+            - link "Skip to sidebar" [ref=e97] [cursor=pointer]:
+              - /url: "#blocos-stat-card--tons"
+            - iframe [ref=e101]:
+              
+    - generic [ref=e102]:
+      - separator "Addon panel resize handle" [ref=e103]
+      - region "Addon panel" [ref=e105]:
+        - heading "Addon panel" [level=2] [ref=e106]
+        - generic [ref=e107]:
+          - generic [ref=e108]:
+            - generic [ref=e109]:
+              - button "Move addon panel to right" [ref=e110] [cursor=pointer]:
+                - img [ref=e111]
+              - button "Hide addon panel" [ref=e114] [cursor=pointer]:
+                - img [ref=e115]
+            - tablist "Available addons" [ref=e120]:
+              - tab "Controls" [selected] [ref=e121] [cursor=pointer]:
+                - generic [ref=e123]: Controls
+              - tab "Actions" [ref=e124] [cursor=pointer]:
+                - generic [ref=e126]: Actions
+              - tab "Interactions" [ref=e127] [cursor=pointer]:
+                - generic [ref=e129]: Interactions
+              - tab "Accessibility" [ref=e130] [cursor=pointer]:
+                - generic [ref=e132]: Accessibility
+              - tab "Code" [ref=e133] [cursor=pointer]
+          - tabpanel "Controls" [ref=e134]

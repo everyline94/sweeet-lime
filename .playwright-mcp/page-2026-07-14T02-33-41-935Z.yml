@@ -1,0 +1,9 @@
+- main [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - heading "Consumidor do sweeet-lime" [level=1] [ref=e5]
+      - paragraph [ref=e6]: Instalado pelo registry, sem copiar arquivo na mão.
+    - generic [ref=e7]:
+      - button "Ação em lima" [ref=e8]
+      - button "Contorno" [ref=e9]
+    - code [ref=e10]: "--lima: #e6f87f, --sobre-lima: #16181a"
