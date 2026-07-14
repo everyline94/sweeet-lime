@@ -14,8 +14,11 @@
 - [x] Storybook sobe, claro e escuro funcionam, `build-storybook` gera estático que abre
 - [x] Prova de consumo: app scratch instalou `@sweeet-lime/botao` pelo registry e
       renderizou a lima `#e6f87f` com texto `#16181a`, na Manrope
-- [x] a11y: axe rodado nas 36 stories nos dois temas, comparado com o hub original.
+- [x] a11y: axe rodado nas 36 stories nos dois temas, comparado com o original.
       Mesmo conjunto de violações, zero nova.
+- [x] Publicar o registry: no ar em https://sweeet-lime.vercel.app, repo publico em
+      github.com/everyline94/sweeet-lime. Provado com o app scratch instalando pela URL
+      publica, sem servidor local no ar.
 
 ## Desvios em relação ao original (com motivo)
 
@@ -52,9 +55,7 @@
       `sync-tokens.config.json` na raiz com `{ "alvos": ["../caminho/index.html"] }` e o
       script lendo dali em vez da lista fixa. Entra quando existir o primeiro consumidor
       single-file fora do app de origem.
-- [ ] Publicar o registry (Vercel ou GitHub Pages) pra trocar o `localhost:4000` por uma
-      URL de verdade no `components.json` do consumidor.
 - [ ] Story do `moldura.tsx` (o único componente que veio sem story).
-- [ ] Dívida herdada do hub, não introduzida aqui: `ui-input--estados` acusa `label`
+- [ ] Dívida herdada do original, não introduzida aqui: `ui-input--estados` acusa `label`
       crítico no axe, e `badge`/`button`/`marca no trilho` acusam `color-contrast` no
-      claro. Vale corrigir na fonte e devolver pro hub.
+      claro. Vale corrigir na fonte e devolver pro app de origem.

@@ -10,16 +10,22 @@ Extraído de um app interno, que segue sendo a implementação de referência.
 ## Como um projeto novo consome
 
 O registry do shadcn é a porta principal: o consumidor recebe o código, não um binário.
+Ele está no ar em <https://sweeet-lime.vercel.app>, então não precisa de nada rodando
+na sua máquina.
 
-1. Sirva o registry: `npm run registry:build && npm run registry:serve` (fica em :4000).
-2. No projeto que vai consumir, rode `npx shadcn@latest init -b base -p nova`.
-3. Aponte pro registry no `components.json` dele:
-   `"registries": { "@sweeet-lime": "http://localhost:4000/r/{name}.json" }`
-4. Instale o que quiser: `npx shadcn@latest add @sweeet-lime/botao`. Vêm juntos os
+1. No projeto que vai consumir, rode `npx shadcn@latest init -b base -p nova`.
+2. Instale direto pela URL:
+   `npx shadcn@latest add https://sweeet-lime.vercel.app/r/botao.json`. Vêm juntos os
    tokens, o Button e as duas fontes.
-5. No CSS da aplicação (o `app/globals.css`), deixe só a primeira linha:
+3. Se for pegar várias peças, registre o namespace no `components.json` do projeto:
+   `"registries": { "@sweeet-lime": "https://sweeet-lime.vercel.app/r/{name}.json" }`.
+   Aí é `npx shadcn@latest add @sweeet-lime/blocos`, e assim por diante.
+4. No CSS da aplicação (o `app/globals.css`), deixe a primeira linha ser
    `@import "../styles/tokens.css";`. Ela já traz o Tailwind, o tw-animate-css e a
    ponte pro shadcn. Nada pode vir antes.
+
+Pra desenvolver o sistema, o registry local ainda existe: `npm run registry:build &&
+npm run registry:serve` sobe em :4000 e o consumidor aponta pra lá em vez da Vercel.
 
 As fontes chegam sozinhas: os itens `manrope` e `jetbrains-mono` são do tipo
 `registry:font`, então o `shadcn add` escreve o `next/font/google` no `layout.tsx` do

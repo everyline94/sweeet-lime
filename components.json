@@ -18,6 +18,6 @@
     "hooks": "@/hooks"
   },
   "registries": {
-    "@sweeet-lime": "http://localhost:4000/r/{name}.json"
+    "@sweeet-lime": "https://sweeet-lime.vercel.app/r/{name}.json"
   }
 }
