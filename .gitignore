@@ -6,3 +6,7 @@ storybook-static/
 # o brief original fica local: tem caminho da minha maquina e contexto do app de origem
 BRIEF.md
 .vercel
+
+# lixo de sessao do navegador (screenshots e logs de console do playwright)
+.playwright-mcp/
+*.png
