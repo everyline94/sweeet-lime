@@ -71,13 +71,21 @@ Gate de consumo caiu (decisão do fechamento do kit): as levas entram em sequên
       risco-forte, conferido no claro: 3.81:1 na folha, 3.19:1 no canvas)
 - [x] Stories, registry.json, index.ts, README, registry:build, commit
 
-## v6: leva três (kbd, avatar, progress, breadcrumb, radio-group, pagination,
-toggle-group, button-group, input-group, alert, scroll-area, combobox, command,
-input-otp, story do separator)
+## v6: leva três
 
 Critérios de aceite do fechamento: seleção é lima com texto/ícone sobre-lima
 (radio, página ativa, toggle ativo, dia do calendar); aviso é atencao com filete
 lateral, nunca lima; valores/horários/códigos em tabular-nums, mono em coluna.
+
+- [x] Puros: avatar, breadcrumb, button-group, input-group, scroll-area,
+      combobox, command (deps novas: cmdk, input-otp)
+- [x] Nossos: alert (filete lateral atencao/alerta), kbd (mono), progress
+      (indicador lima, o filete), radio-group (lima + sobre-lima), pagination
+      (ativa lima, tabular-nums), toggle e toggle-group (ativo lima), input-otp
+      (slots mono tabular-nums). Toggle entrou de carona do toggle-group.
+- [x] Story de cada peça mais a do separator prometida; registry, index, README
+- [x] registry:build, build-storybook, conferência visual (pagination escuro,
+      alert claro), commit
 
 ## v7: calendar e date picker (react-day-picker entra aqui, e só aqui)
 

@@ -61,7 +61,7 @@ dele e mataria o sistema.
 
 | Componente | Origem | `--overwrite` |
 |---|---|---|
-| `button`, `tooltip`, `input`, `textarea`, `dialog`, `alert-dialog`, `skeleton`, `label`, `separator`, `popover`, `select`, `dropdown-menu` | registry puro | pode |
-| `badge`, `card`, `sheet`, `table`, `checkbox`, `tabs`, `field`, `switch` | nossos | nunca: apaga a marca |
+| `button`, `tooltip`, `input`, `textarea`, `dialog`, `alert-dialog`, `skeleton`, `label`, `separator`, `popover`, `select`, `dropdown-menu`, `avatar`, `breadcrumb`, `button-group`, `input-group`, `scroll-area`, `combobox`, `command` | registry puro | pode |
+| `badge`, `card`, `sheet`, `table`, `checkbox`, `tabs`, `field`, `switch`, `alert`, `kbd`, `progress`, `radio-group`, `pagination`, `toggle`, `toggle-group`, `input-otp` | nossos | nunca: apaga a marca |
 
 Na dúvida, `npm run ui:diff -- <componente>` antes de encostar.
