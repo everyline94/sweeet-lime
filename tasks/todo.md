@@ -97,7 +97,8 @@ lateral, nunca lima; valores/horários/códigos em tabular-nums, mono em coluna.
 - [x] Stories do calendar (seleção, intervalo, desabilitados, pt-BR),
       registry, index, README, builds, conferência visual do range no escuro
 
-Kit fechado: 35 itens de ui/ no registry, 12 componentes próprios, 9 receitas.
+Kit fechado: 36 itens de ui/ no registry, componentes próprios com Prompt e
+SeletorData, 9 receitas no tokens.css.
 
 ## v3: receitas do swarm (aprovadas no antes-depois.html do bootcamp)
 
