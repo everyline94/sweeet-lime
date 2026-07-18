@@ -60,9 +60,26 @@
 - [x] `registry.json`, `index.ts` e a tabela de fronteira do README atualizados
 - [x] `registry:build` no fim
 
-Segunda leva (só depois desta estar consumida em tela real): popover, select,
-dropdown-menu, switch (conferir contraste do desligado no claro). Calendar e
-date picker: só quando a tela de remarcar existir.
+Gate de consumo caiu (decisão do fechamento do kit): as levas entram em sequência.
+
+## v5: leva dois
+
+- [x] `popover`, `select`, `dropdown-menu` (puros: folha, borda de controle e o
+      destacado em lima com sobre-lima saem da ponte; destacado = semântica do
+      ::selection)
+- [x] `switch` (nosso: ligado lima com polegar sobre-lima; desligado fica no
+      risco-forte, conferido no claro: 3.81:1 na folha, 3.19:1 no canvas)
+- [x] Stories, registry.json, index.ts, README, registry:build, commit
+
+## v6: leva três (kbd, avatar, progress, breadcrumb, radio-group, pagination,
+toggle-group, button-group, input-group, alert, scroll-area, combobox, command,
+input-otp, story do separator)
+
+Critérios de aceite do fechamento: seleção é lima com texto/ícone sobre-lima
+(radio, página ativa, toggle ativo, dia do calendar); aviso é atencao com filete
+lateral, nunca lima; valores/horários/códigos em tabular-nums, mono em coluna.
+
+## v7: calendar e date picker (react-day-picker entra aqui, e só aqui)
 
 ## v3: receitas do swarm (aprovadas no antes-depois.html do bootcamp)
 
