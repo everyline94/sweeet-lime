@@ -41,3 +41,19 @@ export const Copiado: StoryObj = {
     </div>
   ),
 };
+
+export const SemClipboard: StoryObj = {
+  name: "Sem clipboard",
+  render: () => (
+    <div className="pr-card">
+      <div className="pr-topo">
+        <span className="pr-rotulo">Prompt · Sem clipboard</span>
+        <button className="pr-copiar" type="button">Copia com cmd+C</button>
+      </div>
+      <p className="pr-texto">
+        O terceiro rótulo do vocabulário: quando a API e o execCommand
+        falham, o consumidor seleciona o texto e o botão pede o atalho.
+      </p>
+    </div>
+  ),
+};

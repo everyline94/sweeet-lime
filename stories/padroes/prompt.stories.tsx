@@ -1,17 +1,19 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { useEffect } from "react";
 
 import { Prompt } from "@/components/prompt";
 
 /**
- * O prompt copiavel: a RECEITA PROMPT v1 vestida de React. O visual mora no
- * `tokens.css`; o componente poe o clique em cima (clipboard com fallback e
- * o estado Copiado por dois segundos). O botao e a pilula lima com o texto
- * em sobre-lima, a regra dura do sistema. O clique aqui funciona: teste.
+ * O prompt copiavel: a RECEITA PROMPT v1 vestida de React. O clique copia
+ * numa cascata de tres degraus, porque iframe com sandbox nega a API e o
+ * botao nao pode falhar mudo: clipboard.writeText com catch, execCommand
+ * conferindo o retorno, e no ultimo degrau o texto se seleciona sozinho e
+ * o rotulo vira "Copia com cmd+C". Teste o clique nas duas primeiras
+ * stories; a terceira simula o sandbox negando tudo.
  */
 const meta = {
   title: "Padrões/Prompt",
   component: Prompt,
-  parameters: { layout: "padded" },
 } satisfies Meta<typeof Prompt>;
 
 export default meta;
@@ -30,4 +32,37 @@ export const Curto: Story = {
     rotulo: "Template · Próximos dias",
     children: "Colar o resumo, baixar o vídeo e rodar gerar.py.",
   },
+};
+
+/* Nega os dois primeiros degraus enquanto a story esta montada, como um
+   iframe com sandbox faria, e devolve tudo no unmount. Clique no botao:
+   o texto se seleciona em lima e o rotulo pede o atalho. */
+function SandboxNegado() {
+  useEffect(() => {
+    const writeOriginal = navigator.clipboard?.writeText;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText = () =>
+        Promise.reject(new Error("negado pelo sandbox"));
+    }
+    const execOriginal = document.execCommand;
+    document.execCommand = () => false;
+    return () => {
+      if (navigator.clipboard && writeOriginal) {
+        navigator.clipboard.writeText = writeOriginal;
+      }
+      document.execCommand = execOriginal;
+    };
+  }, []);
+
+  return (
+    <Prompt rotulo="Prompt · Sem clipboard">
+      Num iframe com sandbox a API é negada. Clique em Copiar: este texto se
+      seleciona sozinho e o botão passa a pedir o atalho.
+    </Prompt>
+  );
+}
+
+export const SemClipboard: Story = {
+  name: "Sem clipboard (o terceiro degrau)",
+  render: () => <SandboxNegado />,
 };

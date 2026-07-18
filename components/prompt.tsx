@@ -3,9 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 
 /* O prompt copiavel: a RECEITA PROMPT v1 do tokens.css vestida de React.
-   O visual mora na receita; aqui so o clique (clipboard com fallback pra
-   contexto nao seguro e o estado Copiado por dois segundos). O texto entra
-   como string pra poder ir direto pro clipboard. */
+   O visual mora na receita; aqui so o clique, numa cascata de tres degraus,
+   porque iframe com sandbox nega a API e o botao nao pode falhar mudo:
+   1. navigator.clipboard.writeText, com catch;
+   2. execCommand("copy") via textarea, conferindo o retorno booleano;
+   3. seleciona o texto e o rotulo vira "Copia com cmd+C". */
+type EstadoCopia = "parado" | "copiado" | "manual";
+
 export function Prompt({
   rotulo,
   children,
@@ -15,7 +19,8 @@ export function Prompt({
   children: string;
   className?: string;
 }) {
-  const [copiado, setCopiado] = useState(false);
+  const [estado, setEstado] = useState<EstadoCopia>("parado");
+  const textoRef = useRef<HTMLParagraphElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -24,36 +29,63 @@ export function Prompt({
     };
   }, []);
 
-  function confirmar() {
-    setCopiado(true);
+  function mostrar(novo: EstadoCopia, ms: number) {
+    setEstado(novo);
     if (timer.current) clearTimeout(timer.current);
-    timer.current = setTimeout(() => setCopiado(false), 2000);
+    timer.current = setTimeout(() => setEstado("parado"), ms);
   }
 
-  function reserva(texto: string) {
+  function reserva(texto: string): boolean {
     const ta = document.createElement("textarea");
     ta.value = texto;
     ta.style.position = "fixed";
     ta.style.opacity = "0";
     document.body.appendChild(ta);
     ta.select();
+    let ok = false;
     try {
-      document.execCommand("copy");
-      confirmar();
+      ok = document.execCommand("copy");
     } catch {
-      /* clipboard bloqueado: sem confirmacao */
+      ok = false;
     }
     document.body.removeChild(ta);
+    return ok;
   }
 
-  function copiar() {
-    const texto = children.trim();
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(texto).then(confirmar, () => reserva(texto));
-    } else {
-      reserva(texto);
-    }
+  function selecionar() {
+    const el = textoRef.current;
+    const selecao = window.getSelection();
+    if (!el || !selecao) return;
+    const faixa = document.createRange();
+    faixa.selectNodeContents(el);
+    selecao.removeAllRanges();
+    selecao.addRange(faixa);
   }
+
+  async function copiar() {
+    const texto = children.trim();
+    try {
+      if (!navigator.clipboard) throw new Error("sem clipboard");
+      await navigator.clipboard.writeText(texto);
+      mostrar("copiado", 2000);
+      return;
+    } catch {
+      /* API negada ou ausente: desce um degrau */
+    }
+    if (reserva(texto)) {
+      mostrar("copiado", 2000);
+      return;
+    }
+    selecionar();
+    mostrar("manual", 6000);
+  }
+
+  const rotuloBotao =
+    estado === "copiado"
+      ? "Copiado"
+      : estado === "manual"
+        ? "Copia com cmd+C"
+        : "Copiar";
 
   return (
     <div className={`pr-card ${className}`.trim()}>
@@ -63,12 +95,14 @@ export function Prompt({
           type="button"
           className="pr-copiar"
           onClick={copiar}
-          disabled={copiado}
+          disabled={estado === "copiado"}
         >
-          {copiado ? "Copiado" : "Copiar"}
+          {rotuloBotao}
         </button>
       </div>
-      <p className="pr-texto">{children}</p>
+      <p ref={textoRef} className="pr-texto">
+        {children}
+      </p>
     </div>
   );
 }
