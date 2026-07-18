@@ -61,7 +61,7 @@ dele e mataria o sistema.
 
 | Componente | Origem | `--overwrite` |
 |---|---|---|
-| `button`, `tooltip`, `input`, `textarea`, `dialog` | registry puro | pode |
-| `badge`, `card`, `sheet` | nossos | nunca: apaga a marca |
+| `button`, `tooltip`, `input`, `textarea`, `dialog`, `alert-dialog`, `skeleton`, `label`, `separator` | registry puro | pode |
+| `badge`, `card`, `sheet`, `table`, `checkbox`, `tabs`, `field` | nossos | nunca: apaga a marca |
 
 Na dúvida, `npm run ui:diff -- <componente>` antes de encostar.

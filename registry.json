@@ -72,6 +72,25 @@
       ]
     },
     {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "AlertDialog",
+      "description": "A confirmacao de acao seria, sobre Base UI. A acao destrutiva usa a dupla alerta do Button.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@sweeet-lime/tokens",
+        "@sweeet-lime/button"
+      ],
+      "files": [
+        {
+          "path": "components/ui/alert-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "badge",
       "type": "registry:ui",
       "title": "Badge",
@@ -124,6 +143,25 @@
       ]
     },
     {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "O controle de formulario. Marcado e lima com o check em sobre-lima, o gabarito do checklist.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@sweeet-lime/tokens"
+      ],
+      "files": [
+        {
+          "path": "components/ui/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",
@@ -139,6 +177,26 @@
       "files": [
         {
           "path": "components/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "A anatomia do campo: rotulo no gabarito lc-campo, descricao em tinta fraca, erro em alerta, card de escolha marcado em lima.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@sweeet-lime/tokens",
+        "@sweeet-lime/label",
+        "@sweeet-lime/separator"
+      ],
+      "files": [
+        {
+          "path": "components/ui/field.tsx",
           "type": "registry:ui"
         }
       ]
@@ -162,6 +220,39 @@
       ]
     },
     {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "O rotulo cru do registry. O vestido de marca e o FieldLabel, dentro do field.",
+      "registryDependencies": [
+        "@sweeet-lime/tokens"
+      ],
+      "files": [
+        {
+          "path": "components/ui/label.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "A hairline em risco, sobre Base UI. Entrou de carona como dependencia do field.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@sweeet-lime/tokens"
+      ],
+      "files": [
+        {
+          "path": "components/ui/separator.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "sheet",
       "type": "registry:ui",
       "title": "Sheet",
@@ -177,6 +268,55 @@
       "files": [
         {
           "path": "components/ui/sheet.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "O fantasma de carregamento. Pulsa em muted, nunca em lima: carregar nao e marcacao.",
+      "registryDependencies": [
+        "@sweeet-lime/tokens"
+      ],
+      "files": [
+        {
+          "path": "components/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "A tabela do painel: hairlines em risco, cabecalho no padrao rotulo, numeros tabulares.",
+      "registryDependencies": [
+        "@sweeet-lime/tokens"
+      ],
+      "files": [
+        {
+          "path": "components/ui/table.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "A aba da marca e a de linha: filete de lima sob a ativa, inativa em tinta fraca. A pill segue como variant default.",
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@sweeet-lime/tokens"
+      ],
+      "files": [
+        {
+          "path": "components/ui/tabs.tsx",
           "type": "registry:ui"
         }
       ]
@@ -324,6 +464,21 @@
       "files": [
         {
           "path": "components/moldura.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "prompt",
+      "type": "registry:component",
+      "title": "Prompt",
+      "description": "O prompt copiavel: a RECEITA PROMPT v1 vestida de React, com o clique de copiar e o estado Copiado.",
+      "registryDependencies": [
+        "@sweeet-lime/tokens"
+      ],
+      "files": [
+        {
+          "path": "components/prompt.tsx",
           "type": "registry:component"
         }
       ]

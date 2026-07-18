@@ -47,6 +47,41 @@
   em `app/` que não era o `globals.css`.
 - Dependências `@supabase/supabase-js`, `@dnd-kit/*` e `marked`.
 
+## v4: primeira leva do shadcn pro painel-cliente (corte aprovado no inventário)
+
+- [x] `table` (nosso: th no padrão rótulo, hover tinta/5, tabular-nums)
+- [x] `skeleton` (puro: o muted da ponte já resolve)
+- [x] `checkbox` (nosso: marcado em lima com check sobre-lima, indeterminado com traço)
+- [x] `tabs` (nosso: variante line com filete de lima vira default, pill continua)
+- [x] `field` + `label` (label puro; field nosso: rótulo lc-campo, card de escolha em lima)
+      Carona: `separator` entrou como dependência do field, sem story, puro
+- [x] `alert-dialog` (puro: ponte veste tudo, destrutivo pela dupla alerta do Button)
+- [x] Stories em `stories/ui/`, uma por item (menos separator), claro e escuro
+- [x] `registry.json`, `index.ts` e a tabela de fronteira do README atualizados
+- [x] `registry:build` no fim
+
+Segunda leva (só depois desta estar consumida em tela real): popover, select,
+dropdown-menu, switch (conferir contraste do desligado no claro). Calendar e
+date picker: só quando a tela de remarcar existir.
+
+## v3: receitas do swarm (aprovadas no antes-depois.html do bootcamp)
+
+- [x] Tokens `--sobre-trilho` e `--sobre-trilho-fraca` no `:root`, com ponte no
+      `@theme inline`. Constantes, sem redeclaração no `.dark`: lógica do sobre-lima.
+- [x] RECEITA COLUNA v1 (`co-pagina`, com variante `larga`): a coluna centrada pra
+      consumo só-CSS, mesmos números do componente `Pagina`
+- [x] Medida de leitura no `.doc-md p` (`max-width: 68ch`), replicada na cópia do hub
+      (`painel-odonto/hub/app/globals.css`). O personal-hub segue sem: sincronizar
+      quando o `sync-tokens.mjs` da v2 existir, ou reinstalar os tokens pelo registry.
+- [x] RECEITA FLUXO v1 (`fx-`), PASSOS v1 (`pa-`), QUADROS v1 (`qd-`, com chips),
+      PROMPT v1 (`pr-`), INSIGHT v1 (`in-`), VAZIO v1 (`vz-`), TRILHO v1 (`tr-`,
+      item ativo com `color-mix` de lima a 10%)
+- [x] Componente `prompt.tsx` no registry (a RECEITA PROMPT vestida de React)
+- [x] Story de cada receita em `stories/receitas/` e do Prompt em `padroes/`
+- [x] `registry:build` e `build-storybook` passando
+- [x] Página do hub que consome `doc-md` pra conferir o 68ch:
+      `hub/app/direcao/[doc]/page.tsx` (qualquer documento de direção)
+
 ## v2
 
 - [ ] `sync-tokens.mjs` com alvos parametrizados. O conceito é bom (o DS como fonte, os

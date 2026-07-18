@@ -29,6 +29,11 @@
      claro e escuro de tinta, o escuro e claro de salmao. */
   --sobre-alerta: #ffffff;
 
+  /* O texto quando o fundo e trilho. O trilho e escuro nos dois temas,
+     entao estas duas NAO mudam: a mesma logica do sobre-lima. */
+  --sobre-trilho: #e8ebe6;
+  --sobre-trilho-fraca: #9aa39a;
+
   /* A cor do foco do teclado. Reatribuida por superficie no @layer base. */
   --foco: #16181a;
 
@@ -64,6 +69,8 @@
   --color-canvas: var(--canvas);
   --color-folha: var(--folha);
   --color-trilho: var(--trilho);
+  --color-sobre-trilho: var(--sobre-trilho);
+  --color-sobre-trilho-fraca: var(--sobre-trilho-fraca);
   --color-tinta: var(--tinta);
   --color-tinta-fraca: var(--tinta-fraca);
   --color-risco: var(--risco);
@@ -231,6 +238,8 @@
 }
 .doc-md p {
   margin: 0 0 10px;
+  /* medida de leitura: a coluna respira, a linha nao passa de 68 caracteres */
+  max-width: 68ch;
 }
 .doc-md ul,
 .doc-md ol {
@@ -372,3 +381,246 @@
 .lc-pe{position:relative; z-index:2; margin-top:22px; font-size:12px; line-height:1.7; color:var(--tinta-fraca);
   text-align:center; max-width:56ch; text-wrap:balance;}
 /* ===== FIM RECEITA LOGIN FOLHA v1 ===== */
+
+/* ===== RECEITA COLUNA v1 (fonte: styles/tokens.css) =====
+   A coluna de leitura garantida pra quem consome so o CSS, sem o componente
+   Pagina: conteudo centrado no palco (margin-inline auto), medida maxima de
+   860px e respiro lateral. Mata o sintoma da pagina nascendo com o conteudo
+   colado na esquerda em tela larga. Mesmos numeros do Pagina de blocos.tsx;
+   a variante larga abre pra 1240px. */
+.co-pagina{width:100%; max-width:860px; margin-inline:auto; padding:28px 20px 80px;}
+.co-pagina.larga{max-width:1240px;}
+@media (min-width:768px){.co-pagina{padding:40px 32px 80px;}}
+/* ===== FIM RECEITA COLUNA v1 ===== */
+
+/* ===== RECEITA FLUXO v1 (fonte: styles/tokens.css) =====
+   O diagrama que aposenta o ASCII: card de canvas com titulo em rotulo, nos
+   de folha ligados por setas com rotulo em mono (fx-fluxo), sequencias de
+   pilulas (fx-pills) e o painel mono centrado pro que nao da pra interpretar
+   com seguranca (fx-mono). So tokens, nenhum seletor de tema; a media query
+   empilha o fluxo no estreito. */
+.fx-card{border:1px solid var(--risco); border-radius:16px; background:var(--canvas); padding:20px 22px; margin:18px 0;}
+.fx-titulo{margin:0 0 18px; text-align:center; font-size:.75rem; font-weight:600; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--tinta-fraca);}
+.fx-fluxo{display:flex; align-items:stretch;}
+.fx-no{flex:1; min-width:0; border:1px solid var(--risco); border-radius:12px; background:var(--folha);
+  padding:13px 14px 12px; text-align:center;}
+.fx-nome{display:block; font-size:.875rem; font-weight:800; letter-spacing:.04em; text-transform:uppercase;
+  text-wrap:balance;}
+.fx-papel{display:block; font-size:.8125rem; color:var(--tinta-fraca); margin-top:3px; text-wrap:balance;}
+.fx-modos{display:block; font-size:.75rem; color:var(--tinta-fraca); margin-top:9px; padding-top:8px;
+  border-top:1px solid var(--risco); line-height:1.5; text-wrap:balance;}
+.fx-seta{width:56px; flex-shrink:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:5px; padding:0 7px;}
+.fx-rotulo{font-family:var(--font-jetbrains),monospace; font-size:11px; color:var(--tinta-fraca);
+  min-height:14px; line-height:14px;}
+.fx-linha{position:relative; width:100%; height:1px; background:var(--risco-forte);}
+.fx-linha::after{content:""; position:absolute; right:-1px; top:50%; transform:translateY(-50%);
+  border-left:5px solid var(--risco-forte); border-top:4px solid transparent; border-bottom:4px solid transparent;}
+.fx-pills{display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:8px; margin:0 0 12px;}
+.fx-pills:last-child{margin-bottom:0;}
+.fx-pill{border:1px solid var(--risco); background:var(--folha); border-radius:999px; padding:6px 14px;
+  font-size:.875rem; font-weight:600; line-height:1.4;}
+.fx-pillseta{color:var(--tinta-fraca); font-family:var(--font-jetbrains),monospace;}
+.fx-mono{width:fit-content; max-width:100%; margin:18px auto; padding:18px 24px; border:1px solid var(--risco);
+  border-radius:14px; background:var(--canvas); overflow-x:auto;}
+.fx-mono pre{margin:0; font-family:var(--font-jetbrains),monospace; font-size:.8125rem; line-height:1.7;}
+@media (max-width:700px){
+  .fx-fluxo{flex-direction:column;}
+  .fx-seta{width:auto; padding:7px 0;}
+  .fx-linha{width:1px; height:22px;}
+  .fx-linha::after{right:auto; top:auto; left:50%; bottom:-1px; transform:translateX(-50%);
+    border-top:5px solid var(--risco-forte); border-bottom:0;
+    border-left:4px solid transparent; border-right:4px solid transparent;}
+}
+/* ===== FIM RECEITA FLUXO v1 ===== */
+
+/* ===== RECEITA PASSOS v1 (fonte: styles/tokens.css) =====
+   O pipeline vertical: ponto de lima na linha do tempo, quem age em negrito,
+   o que faz em tinta fraca. A variante numerada troca o ponto pelo quadradinho
+   de lima com o numero em sobre-lima (a lima e preenchimento, nunca texto). */
+.pa-lista{list-style:none; margin:0 auto; padding:2px 0 0; max-width:56ch;}
+.pa-lista li{position:relative; padding:0 0 18px 30px;}
+.pa-lista li:last-child{padding-bottom:0;}
+.pa-lista li::before{content:""; position:absolute; left:0; top:5px; width:10px; height:10px; border-radius:50%;
+  background:var(--lima); border:1px solid var(--risco-forte);}
+.pa-lista li::after{content:""; position:absolute; left:5px; top:19px; bottom:-2px; width:1px; background:var(--risco);}
+.pa-lista li:last-child::after{display:none;}
+.pa-quem{display:block; font-size:.9375rem; font-weight:700; line-height:1.45; text-wrap:balance;}
+.pa-oque{display:block; font-size:.875rem; color:var(--tinta-fraca); margin-top:2px; line-height:1.5;
+  text-wrap:pretty;}
+.pa-lista.numerada li{padding-left:36px;}
+.pa-lista.numerada li::before{display:none;}
+.pa-lista.numerada li::after{left:11px; top:26px;}
+.pa-num{position:absolute; left:0; top:0; width:23px; height:23px; border-radius:8px; background:var(--lima);
+  color:var(--sobre-lima); display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-jetbrains),monospace; font-size:11.5px;}
+/* ===== FIM RECEITA PASSOS v1 ===== */
+
+/* ===== RECEITA QUADROS v1 (fonte: styles/tokens.css) =====
+   Tabela vira card, nada rola de lado no celular. Tres formas mais os chips:
+   qd-versus (dois lados com o medalhao vs), qd-cards (um card por linha, com
+   numero opcional em quadradinho de lima), qd-pares (chave e valor com
+   hairline) e qd-chips (uma coluna vira chips). */
+.qd-versus{position:relative; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); border:1px solid var(--risco);
+  border-radius:16px; background:var(--canvas); overflow:hidden; margin:18px 0;}
+.qd-lado{padding:18px 20px 20px; min-width:0;}
+.qd-lado + .qd-lado{border-left:1px solid var(--risco);}
+.qd-vs{position:absolute; left:50%; top:20px; transform:translateX(-50%); width:34px; height:34px; border-radius:50%;
+  background:var(--folha); border:1px solid var(--risco); display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-jetbrains),monospace; font-size:11px; color:var(--tinta-fraca);}
+.qd-tag{display:inline-flex; align-items:center; height:26px; padding:0 12px; border-radius:999px;
+  background:var(--folha); border:1px solid var(--risco-forte); font-size:.8125rem; font-weight:800;
+  letter-spacing:.04em; text-transform:uppercase; margin-bottom:12px; max-width:100%;}
+.qd-lado ul{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:minmax(0,1fr); gap:8px;}
+.qd-lado li{font-size:.875rem; font-weight:500; line-height:1.55; padding-top:8px; border-top:1px solid var(--risco);
+  text-wrap:pretty;}
+.qd-lado li:first-child{border-top:0; padding-top:0;}
+.qd-dim{display:block; font-size:.6875rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--tinta-fraca); margin-bottom:2px;}
+.qd-cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px; margin:18px 0;}
+.qd-card{border:1px solid var(--risco); border-radius:14px; background:var(--canvas); padding:15px 16px 16px;
+  min-width:0; display:flex; gap:12px; align-items:flex-start;}
+.qd-num{flex-shrink:0; width:26px; height:26px; border-radius:8px; background:var(--lima); color:var(--sobre-lima);
+  display:flex; align-items:center; justify-content:center; font-family:var(--font-jetbrains),monospace;
+  font-size:12px; margin-top:1px;}
+.qd-miolo{min-width:0; flex:1;}
+.qd-titulo{margin:0 0 6px; font-size:.9375rem; font-weight:700; line-height:1.4; text-wrap:balance;}
+.qd-campo{margin-top:8px; font-size:.8125rem; line-height:1.55;}
+.qd-rotulo{display:block; font-size:.6875rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--tinta-fraca);}
+.qd-campo .qd-valor{display:block; text-wrap:pretty;}
+.qd-pares{border:1px solid var(--risco); border-radius:14px; background:var(--canvas); overflow:hidden; margin:18px 0;}
+.qd-par{display:grid; grid-template-columns:minmax(110px,190px) minmax(0,1fr); gap:14px; padding:11px 16px;
+  border-top:1px solid var(--risco);}
+.qd-par:first-child{border-top:0;}
+.qd-par .qd-chave{font-size:.875rem; font-weight:700; line-height:1.5;}
+.qd-par .qd-valor{font-size:.9375rem; line-height:1.6; text-wrap:pretty;}
+.qd-par.cabeca{font-size:.6875rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--tinta-fraca); background:var(--folha); padding:8px 16px;}
+.qd-par.cabeca .qd-chave,.qd-par.cabeca .qd-valor{font-size:inherit; font-weight:inherit; color:inherit;}
+.qd-chips-grupo{margin:18px 0;}
+.qd-chips-titulo{margin:0 0 4px; font-size:.75rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--tinta-fraca);}
+.qd-chips{display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 0;}
+.qd-chip{display:inline-flex; align-items:center; border:1px solid var(--risco); background:var(--canvas);
+  border-radius:999px; padding:5px 13px; font-size:.8125rem; font-weight:600; line-height:1.4; color:var(--tinta);}
+.qd-chip.meta{background:var(--folha);}
+.qd-chip.atencao{border-color:var(--atencao); color:var(--atencao);}
+@media (max-width:700px){
+  .qd-versus{grid-template-columns:minmax(0,1fr);}
+  .qd-lado + .qd-lado{border-left:0; border-top:1px solid var(--risco);}
+  .qd-vs{display:none;}
+  .qd-par{grid-template-columns:minmax(0,1fr); gap:3px;}
+}
+/* ===== FIM RECEITA QUADROS v1 ===== */
+
+/* ===== RECEITA PROMPT v1 (fonte: styles/tokens.css) =====
+   O material reutilizavel ganha botao: card de canvas com hairline, rotulo em
+   caps e a pilula lima de copiar com o texto em sobre-lima. So o visual mora
+   aqui; o clique (clipboard, estado Copiado) e por conta do consumidor. O
+   componente prompt.tsx do registry traz visual e comportamento juntos. */
+.pr-card{border:1px solid var(--risco); border-radius:16px; background:var(--canvas); overflow:hidden; margin:18px 0;}
+.pr-topo{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:11px 14px 11px 18px;
+  border-bottom:1px solid var(--risco);}
+.pr-rotulo{font-size:.75rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--tinta-fraca); min-width:0;}
+.pr-copiar{flex-shrink:0; height:32px; padding:0 15px; border-radius:999px; border:0; background:var(--lima);
+  color:var(--sobre-lima); font:inherit; font-size:13px; font-weight:700; cursor:pointer; transition:filter .15s;}
+.pr-copiar:hover{filter:brightness(.96);}
+.pr-copiar:disabled{opacity:.65; pointer-events:none;}
+.pr-texto{margin:0; padding:18px; font-family:var(--font-jetbrains),monospace; font-size:.8125rem; line-height:1.75;
+  color:var(--tinta); white-space:pre-wrap; word-break:break-word;}
+/* ===== FIM RECEITA PROMPT v1 ===== */
+
+/* ===== RECEITA INSIGHT v1 (fonte: styles/tokens.css) =====
+   Hierarquia pro que importa, em tres degraus: in-marca (destaque com filete
+   de lima), in-marca.nota (o filete rebaixa pra risco-forte) e in-lima (o
+   card de lima cheia do insight principal, texto sempre em sobre-lima, que
+   nao muda entre os temas). */
+.in-marca{position:relative; padding:2px 0 2px 20px; margin:18px 0;}
+.in-marca::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px; border-radius:3px;
+  background:var(--lima);}
+.in-marca.nota::before{background:var(--risco-forte);}
+.in-rotulo{display:block; font-size:.75rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--tinta-fraca); margin-bottom:6px;}
+.in-marca p{margin:0 0 8px; font-size:1.125rem; line-height:1.55; font-weight:600; text-wrap:balance;}
+.in-marca p:last-child{margin-bottom:0;}
+.in-marca.nota p{font-weight:500; font-size:1rem;}
+.in-lima{margin:18px 0; background:var(--lima); color:var(--sobre-lima); border-radius:16px; padding:20px 24px 22px;}
+.in-lima .in-rotulo{color:var(--sobre-lima); opacity:.62; margin-bottom:8px;}
+.in-lima p{margin:0 0 10px; font-size:1.1875rem; line-height:1.5; font-weight:700; text-wrap:balance;}
+.in-lima p:last-child{margin-bottom:0;}
+.in-lima ::selection{background:var(--sobre-lima); color:var(--lima);}
+/* ===== FIM RECEITA INSIGHT v1 ===== */
+
+/* ===== RECEITA VAZIO v1 (fonte: styles/tokens.css) =====
+   O estado vazio com dignidade: borda tracejada de risco-forte, numero grande
+   em mono, chip "em breve" de lima (texto em sobre-lima) e o ritual numerado
+   do que acontece quando o conteudo chegar. */
+.vz-card{border:1px dashed var(--risco-forte); border-radius:16px; padding:22px 24px 24px; margin:18px 0;}
+.vz-topo{display:flex; align-items:center; gap:16px; margin-bottom:12px;}
+.vz-num{font-family:var(--font-jetbrains),monospace; font-size:2.25rem; font-weight:500; line-height:1;
+  letter-spacing:-.02em;}
+.vz-titulo{margin:0; font-size:1.125rem; font-weight:800; text-wrap:balance;}
+.vz-chip{display:inline-flex; align-items:center; height:24px; padding:0 11px; border-radius:999px;
+  background:var(--lima); color:var(--sobre-lima); font-size:.6875rem; font-weight:700; letter-spacing:.06em;
+  text-transform:uppercase;}
+.vz-chip.mini{height:20px; padding:0 9px; font-size:.625rem; opacity:.85;}
+.vz-topo .vz-chip{margin-left:auto;}
+.vz-lede{margin:0 0 12px; font-size:.9375rem; color:var(--tinta-fraca); text-wrap:pretty;}
+.vz-ritual{list-style:none; margin:0; padding:0; counter-reset:rit;}
+.vz-ritual li{counter-increment:rit; position:relative; padding:10px 0 10px 34px; font-size:.9375rem;
+  border-top:1px solid var(--risco); line-height:1.5; text-wrap:pretty;}
+.vz-ritual li::before{content:counter(rit); position:absolute; left:2px; top:50%; transform:translateY(-50%);
+  width:22px; height:22px; border-radius:7px; border:1px solid var(--risco-forte); color:var(--tinta-fraca);
+  display:flex; align-items:center; justify-content:center; font-family:var(--font-jetbrains),monospace;
+  font-size:11px;}
+/* ===== FIM RECEITA VAZIO v1 ===== */
+
+/* ===== RECEITA TRILHO v1 (fonte: styles/tokens.css) =====
+   A navegacao com progresso visivel: o filete de lima que acompanha o scroll,
+   o item de trilho com ponto lido e estado ativo, a pilula do glossario e o
+   item de termo da gaveta (a gaveta em si e o sheet do registry, e o termo
+   mora na folha, por isso fala em tinta e risco). Texto sobre o trilho usa
+   sobre-trilho e sobre-trilho-fraca, que nao mudam entre temas porque o
+   trilho e escuro nos dois; os tons intermediarios saem por color-mix. O
+   comportamento (scrollspy, largura do filete, estado lido) e por conta do
+   consumidor. */
+.tr-filete{position:fixed; top:0; left:0; right:0; height:3px; z-index:40; pointer-events:none;}
+.tr-filete i{display:block; height:100%; width:0; background:var(--lima); transition:width .1s linear;}
+.tr-raiz{background:var(--trilho); color:var(--sobre-trilho); --foco:var(--lima);}
+.tr-grupo{margin-bottom:20px;}
+.tr-dia{margin:0 0 8px; font-size:.75rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--sobre-trilho-fraca);}
+.tr-lista{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:minmax(0,1fr); gap:1px;}
+.tr-item{display:flex; align-items:flex-start; gap:9px; padding:8px 10px; border-radius:10px; text-decoration:none;
+  color:color-mix(in srgb, var(--sobre-trilho) 60%, var(--sobre-trilho-fraca)); font-size:13.5px; line-height:1.35;
+  overflow:hidden; border-left:2px solid transparent; transition:background .14s,color .14s;}
+.tr-item:hover{background:color-mix(in srgb, var(--sobre-trilho) 5%, transparent); color:var(--sobre-trilho);}
+.tr-item.ativo{background:color-mix(in srgb, var(--lima) 10%, transparent); color:var(--sobre-trilho);
+  border-left-color:var(--lima);}
+.tr-ponto{width:8px; height:8px; margin-top:5px; border-radius:50%; flex-shrink:0;
+  border:1px solid color-mix(in srgb, var(--sobre-trilho-fraca) 55%, var(--trilho));
+  transition:background .2s,border-color .2s;}
+.tr-item.lido .tr-ponto{background:var(--lima); border-color:var(--lima);}
+.tr-rotulo{min-width:0;}
+.tr-curto{display:block; font-weight:600;}
+.tr-resto{display:block; font-size:11.5px; margin-top:2px; overflow:hidden; text-overflow:ellipsis;
+  white-space:nowrap; color:color-mix(in srgb, var(--sobre-trilho-fraca) 88%, var(--trilho));}
+.tr-item.ativo .tr-resto{color:color-mix(in srgb, var(--sobre-trilho) 25%, var(--sobre-trilho-fraca));}
+.tr-pilula{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 13px;
+  border-radius:11px; border:1px solid color-mix(in srgb, var(--sobre-trilho) 16%, transparent); background:none;
+  width:100%; color:var(--sobre-trilho); font:inherit; font-size:13px; font-weight:600; cursor:pointer;
+  transition:border-color .15s,background .15s;}
+.tr-pilula:hover{border-color:color-mix(in srgb, var(--sobre-trilho) 34%, transparent);
+  background:color-mix(in srgb, var(--sobre-trilho) 4%, transparent);}
+.tr-pilula kbd{font-family:var(--font-jetbrains),monospace; font-size:11px; padding:2px 7px; border-radius:6px;
+  border:1px solid color-mix(in srgb, var(--sobre-trilho) 22%, transparent); color:var(--sobre-trilho-fraca);}
+.tr-termo{padding:12px 0; border-top:1px solid var(--risco);}
+.tr-termo:first-child{border-top:0; padding-top:0;}
+.tr-termo b{font-size:.9375rem;}
+.tr-cap{float:right; font-size:.6875rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--tinta-fraca); margin:3px 0 0 10px;}
+.tr-termo p{margin:3px 0 0; font-size:.8125rem; line-height:1.55; color:var(--tinta-fraca); text-wrap:pretty;}
+/* ===== FIM RECEITA TRILHO v1 ===== */

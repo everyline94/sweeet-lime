@@ -26,7 +26,54 @@ export {
   DialogTitle,
   DialogDescription,
 } from "./components/ui/dialog";
+export {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogMedia,
+  AlertDialogOverlay,
+  AlertDialogPortal,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "./components/ui/alert-dialog";
+export { Checkbox } from "./components/ui/checkbox";
+export {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  FieldLegend,
+  FieldSeparator,
+  FieldSet,
+  FieldTitle,
+} from "./components/ui/field";
 export { Input } from "./components/ui/input";
+export { Label } from "./components/ui/label";
+export { Separator } from "./components/ui/separator";
+export { Skeleton } from "./components/ui/skeleton";
+export {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "./components/ui/table";
+export {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+  tabsListVariants,
+} from "./components/ui/tabs";
 export {
   Sheet,
   SheetTrigger,
@@ -60,6 +107,7 @@ export { BotaoLima } from "./components/botao";
 export { ItemCheck, type ChecklistItem } from "./components/checklist";
 export { Marca, Selo } from "./components/marca";
 export { Moldura } from "./components/moldura";
+export { Prompt } from "./components/prompt";
 export { Spinner } from "./components/spinner";
 export { BotaoTema } from "./components/tema";
 export { ThemeProvider } from "./components/theme-provider";

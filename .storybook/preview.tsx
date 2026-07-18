@@ -10,11 +10,11 @@ const preview: Preview = {
 
   parameters: {
     layout: "centered",
-    backgrounds: { disable: true },
+    backgrounds: { disabled: true },
     a11y: { test: "todo" },
     options: {
       storySort: {
-        order: ["Fundação", "UI", "Blocos", "Padrões"],
+        order: ["Fundação", "UI", "Blocos", "Padrões", "Receitas"],
       },
     },
   },
