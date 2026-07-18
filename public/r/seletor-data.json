@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "seletor-data",
+  "title": "SeletorData",
+  "description": "O date picker: popover + calendar + botao com a data em tabular-nums. A peca da tela de remarcar.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "@sweeet-lime/tokens",
+    "@sweeet-lime/button",
+    "@sweeet-lime/calendar",
+    "@sweeet-lime/popover"
+  ],
+  "files": [
+    {
+      "path": "components/seletor-data.tsx",
+      "content": "\"use client\";\n\nimport { useState } from \"react\";\nimport { CalendarIcon } from \"lucide-react\";\n\nimport { Button } from \"@/components/ui/button\";\nimport { Calendar } from \"@/components/ui/calendar\";\nimport {\n  Popover,\n  PopoverContent,\n  PopoverTrigger,\n} from \"@/components/ui/popover\";\n\n/* O date picker do sistema: popover + calendar + botao com a data por\n   extenso. O dia selecionado e lima com o numero em sobre-lima (regra do\n   calendar). Controlado por fora quando value/onChange vierem; guarda o\n   estado sozinho quando nao. */\nexport function SeletorData({\n  value,\n  onChange,\n  placeholder = \"Escolher data\",\n  locale = \"pt-BR\",\n  className = \"\",\n}: {\n  value?: Date;\n  onChange?: (data: Date | undefined) => void;\n  placeholder?: string;\n  locale?: string;\n  className?: string;\n}) {\n  const [interna, setInterna] = useState<Date | undefined>(undefined);\n  const [aberto, setAberto] = useState(false);\n  const data = value ?? interna;\n\n  function escolher(d: Date | undefined) {\n    if (onChange) onChange(d);\n    else setInterna(d);\n    setAberto(false);\n  }\n\n  return (\n    <Popover open={aberto} onOpenChange={setAberto}>\n      <PopoverTrigger\n        render={\n          <Button\n            variant=\"outline\"\n            className={`min-w-44 justify-start gap-2 tabular-nums ${className}`.trim()}\n          >\n            <CalendarIcon data-icon=\"inline-start\" />\n            {data\n              ? data.toLocaleDateString(locale, {\n                  day: \"2-digit\",\n                  month: \"short\",\n                  year: \"numeric\",\n                })\n              : placeholder}\n          </Button>\n        }\n      />\n      <PopoverContent className=\"w-auto p-0\">\n        <Calendar mode=\"single\" selected={data} onSelect={escolher} />\n      </PopoverContent>\n    </Popover>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:component"
+}

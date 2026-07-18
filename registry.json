@@ -469,6 +469,26 @@
       ]
     },
     {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "description": "O calendario (react-day-picker). Dia selecionado e lima com o numero em sobre-lima; hoje e muted, porque hoje nao e selecao.",
+      "dependencies": [
+        "react-day-picker",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@sweeet-lime/tokens",
+        "@sweeet-lime/button"
+      ],
+      "files": [
+        {
+          "path": "components/ui/calendar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "alert",
       "type": "registry:ui",
       "title": "Alert",
@@ -823,6 +843,27 @@
         {
           "path": "components/ui/switch.tsx",
           "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "seletor-data",
+      "type": "registry:component",
+      "title": "SeletorData",
+      "description": "O date picker: popover + calendar + botao com a data em tabular-nums. A peca da tela de remarcar.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@sweeet-lime/tokens",
+        "@sweeet-lime/button",
+        "@sweeet-lime/calendar",
+        "@sweeet-lime/popover"
+      ],
+      "files": [
+        {
+          "path": "components/seletor-data.tsx",
+          "type": "registry:component"
         }
       ]
     },

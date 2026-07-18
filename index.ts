@@ -148,6 +148,7 @@ export {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "./components/ui/breadcrumb";
+export { Calendar, CalendarDayButton } from "./components/ui/calendar";
 export {
   ButtonGroup,
   ButtonGroupSeparator,
@@ -234,6 +235,7 @@ export { ItemCheck, type ChecklistItem } from "./components/checklist";
 export { Marca, Selo } from "./components/marca";
 export { Moldura } from "./components/moldura";
 export { Prompt } from "./components/prompt";
+export { SeletorData } from "./components/seletor-data";
 export { Spinner } from "./components/spinner";
 export { BotaoTema } from "./components/tema";
 export { ThemeProvider } from "./components/theme-provider";

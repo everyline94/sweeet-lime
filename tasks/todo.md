@@ -87,7 +87,17 @@ lateral, nunca lima; valores/horários/códigos em tabular-nums, mono em coluna.
 - [x] registry:build, build-storybook, conferência visual (pagination escuro,
       alert claro), commit
 
-## v7: calendar e date picker (react-day-picker entra aqui, e só aqui)
+## v7: calendar e date picker
+
+- [x] `calendar` (nosso: dia selecionado e pontas de range em lima com número
+      sobre-lima; hoje e meio de range em muted, hoje não é seleção).
+      react-day-picker entrou aqui, e só aqui.
+- [x] `seletor-data` (componente próprio: popover + calendar + botão em
+      tabular-nums, a peça da tela de remarcar), story em Padrões
+- [x] Stories do calendar (seleção, intervalo, desabilitados, pt-BR),
+      registry, index, README, builds, conferência visual do range no escuro
+
+Kit fechado: 35 itens de ui/ no registry, 12 componentes próprios, 9 receitas.
 
 ## v3: receitas do swarm (aprovadas no antes-depois.html do bootcamp)
 
